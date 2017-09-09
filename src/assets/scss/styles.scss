@@ -1,0 +1,304 @@
+@import "variables";
+@import "buttons";
+
+html,
+body {
+	height: 100%;
+	min-height: 100%;
+}
+
+body {
+	font-family: $base-font-family;
+	font-size: $base-fz;
+	color: $base-color;
+	line-height: $base-line-height;
+}
+
+.page-wrap {
+	
+	> .sb {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 80px;
+	}
+	
+	> .container {
+		margin-left: 80px;
+	}
+}
+
+h1,
+h2,
+h3 {
+	margin: 0;
+	padding: 0;
+}
+
+*, :after, :before {
+	box-sizing: border-box;
+}
+
+.main-header {
+	height: 80px;
+}
+
+.list-unstyled {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+p {
+	margin: 0;
+}
+
+.flex {
+	display: flex;
+	
+	&__x-center {
+		justify-content: center;
+	}
+	
+	&__y-center {
+		align-items: center;
+	}
+	
+	&__x-between {
+		justify-content: space-between;
+	}
+}
+
+input {
+	&::-webkit-input-placeholder,
+	&:-moz-placeholder,
+	&::-moz-placeholder,
+	&:-ms-input-placeholder {
+		color: $placeholder-color;
+	}
+}
+
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+.text-limit {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	-ms-word-break: break-all;
+	word-break: break-all;
+	
+	/* Non standard for WebKit */
+	word-break: break-word;
+	
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
+}
+
+.p {
+	&-x-30 {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+	
+	&-y-30 {
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+	
+	&-x-15 {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	
+	&-y-15 {
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+}
+
+.img {
+	&__responsive {
+		max-width: 100%;
+		max-height: 100%;
+	}
+	
+	&__rounded {
+		border-radius: 50%;
+	}
+}
+
+a {
+	text-decoration: none;
+}
+
+.main-block {
+	height: calc(100vh - 160px); //160px - headers height
+	
+	$margin: 30px;
+	$sidebar-width: 25%;
+	
+	&__sidebar,
+	&__main {
+		height: 100%;
+		float: left;
+		background-color: #ffffff;
+	}
+	
+	&__sidebar {
+		width: 25%;
+		
+		.tab {
+			height: 100%;
+			
+			&__area {
+				height: calc(100% - 80px); // 80px - sidebar menu height
+			}
+			
+			&__item,
+			.simplebar {
+				height: 100%;
+			}
+		}
+	}
+	
+	&__main {
+		width: calc(100% - (#{$sidebar-width} * 2) - (#{$margin} * 2));
+		margin: 0 $margin;
+		
+		.g-tab {
+			height: calc(100% - 80px); // 80px - menu height
+			
+			&__area {
+				height: calc(100% - 75px); //75px - tabs height
+			}
+			
+			&__item,
+			.simplebar {
+				height: 100%;
+			}
+		}
+	}
+}
+
+.simplebar-scroll-content {
+	margin-bottom: -15px !important;
+}
+
+.tab {
+	&__menu {
+		display: flex;
+		align-items: center;
+		line-height: 1;
+		color: #ffffff;
+		background-color: lighten($primary-color, 10%);
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		
+		li {
+			flex: 1 1 auto;
+			display: block;
+		}
+		
+		.active {
+			position: relative;
+			background-color: $primary-color;
+			
+			&:after {
+				content: '';
+				position: absolute;
+				top: 100%;
+				left: calc(50% - 13px);
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-width: 13px 12px 0 12px;
+				border-color: $primary-color transparent transparent transparent;
+				//transform: translateX(-50%); non cross-browser
+			}
+		}
+		
+		a {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: inherit;
+			font-family: 'LatoLight', 'sans-serif';
+			padding: 30px 10px;
+		}
+		
+		.shorten {
+			flex: 0 0 35px;
+			border-left: 1px solid $primary-color;
+		}
+	}
+	
+	&__item {
+		display: none;
+		
+		&.active {
+			display: block;
+		}
+	}
+}
+
+.simplebar {
+	.simplebar-track {
+		width: 5px;
+		background-color: #d9d9d9;
+		
+		&.horizontal {
+			display: none;
+		}
+	}
+	
+	.simplebar-scrollbar {
+		right: 0;
+		width: 5px;
+		border-radius: 0;
+		background-color: $primary-color;
+	}
+}
+
+@media all and (max-width: 1366px) {
+	.tab {
+		&__menu {
+			height: 48px;
+			a {
+				padding-top: 17px;
+				padding-bottom: 17px;
+				font-size: 14px;
+				
+			}
+		}
+	}
+	
+	.main-block {
+		&__sidebar {
+			.tab {
+				&__area {
+					height: calc(100% - 48px); // 48px - menu height
+				}
+			}
+		}
+		
+		&__main {
+			.g-tab {
+				height: calc(100% - 48px); // 48px - menu height
+				
+				&__area {
+					height: calc(100% - 46px); //46px - tabs height
+				}
+			}
+		}
+	}
+}

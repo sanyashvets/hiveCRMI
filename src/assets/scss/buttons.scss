@@ -1,0 +1,15 @@
+
+.btn {
+	cursor: pointer;
+	border: none;
+	&__flex {
+		padding: 0;
+		> span {
+			height: 100%;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+}
